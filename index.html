@@ -1,0 +1,1239 @@
+﻿<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>NEXGAME | Gaming Marketplace</title>
+
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+
+:root{
+ --bg:#060812;
+ --card:#0d1220;
+ --card2:#11182a;
+ --line:#202b46;
+ --text:#f5f7ff;
+ --muted:#8d98b5;
+ --cyan:#28e7ff;
+ --purple:#855cff;
+ --green:#2be58a;
+}
+
+html{scroll-behavior:smooth}
+
+body{
+ background:
+ radial-gradient(circle at 80% -10%,#1d2c68 0,transparent 35%),
+ radial-gradient(circle at 10% 20%,#151b46 0,transparent 28%),
+ var(--bg);
+ color:var(--text);
+ font-family:Tahoma,Arial,sans-serif;
+ min-height:100vh;
+}
+
+button,input{
+ font:inherit;
+}
+
+button{
+ cursor:pointer;
+}
+
+.container{
+ width:min(1240px,calc(100% - 40px));
+ margin:auto;
+}
+
+/* HEADER */
+
+header{
+ position:sticky;
+ top:0;
+ z-index:100;
+ background:rgba(6,8,18,.82);
+ backdrop-filter:blur(20px);
+ border-bottom:1px solid var(--line);
+}
+
+.nav{
+ height:72px;
+ display:flex;
+ align-items:center;
+ gap:30px;
+}
+
+.logo{
+ font-size:24px;
+ font-weight:900;
+ letter-spacing:.5px;
+}
+
+.logo span{
+ color:var(--cyan);
+}
+
+.nav-links{
+ display:flex;
+ gap:24px;
+}
+
+.nav-links a{
+ color:#aeb8d0;
+ text-decoration:none;
+ font-size:13px;
+ transition:.2s;
+}
+
+.nav-links a:hover{
+ color:var(--cyan);
+}
+
+.spacer{
+ flex:1;
+}
+
+.login{
+ background:#11182a;
+ border:1px solid var(--line);
+ color:white;
+ padding:10px 17px;
+ border-radius:12px;
+}
+
+/* HERO */
+
+.hero{
+ padding:85px 0 55px;
+}
+
+.hero-grid{
+ display:grid;
+ grid-template-columns:1.2fr .8fr;
+ gap:45px;
+ align-items:center;
+}
+
+.badge{
+ color:var(--cyan);
+ font-size:12px;
+ font-weight:bold;
+ letter-spacing:1px;
+}
+
+.hero h1{
+ font-size:58px;
+ line-height:1.08;
+ margin:18px 0;
+}
+
+.gradient{
+ background:linear-gradient(90deg,var(--cyan),#9b7aff);
+ -webkit-background-clip:text;
+ color:transparent;
+}
+
+.hero p{
+ color:var(--muted);
+ line-height:2;
+ max-width:650px;
+ font-size:15px;
+}
+
+.hero-buttons{
+ display:flex;
+ gap:12px;
+ margin-top:28px;
+}
+
+.primary{
+ border:0;
+ background:linear-gradient(135deg,var(--cyan),#6878ff);
+ color:#041017;
+ font-weight:900;
+ padding:14px 23px;
+ border-radius:13px;
+}
+
+.secondary{
+ background:#101629;
+ color:white;
+ border:1px solid var(--line);
+ padding:14px 23px;
+ border-radius:13px;
+}
+
+.hero-card{
+ background:linear-gradient(145deg,#131b38,#090d18);
+ border:1px solid #2b375b;
+ border-radius:25px;
+ padding:20px;
+ box-shadow:0 30px 90px #0009;
+}
+
+.card-top{
+ display:flex;
+ justify-content:space-between;
+ color:#8994b1;
+ font-size:11px;
+}
+
+.hero-image{
+ height:220px;
+ margin:18px 0;
+ border-radius:18px;
+ display:grid;
+ place-items:center;
+ background:
+ radial-gradient(circle,#725cff80,transparent 42%),
+ linear-gradient(135deg,#1a2856,#0b0e19);
+}
+
+.hero-image strong{
+ font-size:35px;
+ color:#ffffff14;
+}
+
+.stats{
+ display:grid;
+ grid-template-columns:repeat(3,1fr);
+ gap:9px;
+}
+
+.stat{
+ background:#080c17;
+ border:1px solid var(--line);
+ border-radius:12px;
+ text-align:center;
+ padding:13px;
+}
+
+.stat b{
+ display:block;
+ margin-bottom:4px;
+}
+
+.stat small{
+ color:var(--muted);
+}
+
+/* SECTIONS */
+
+section{
+ padding:38px 0;
+}
+
+.section-head{
+ display:flex;
+ justify-content:space-between;
+ align-items:end;
+ margin-bottom:20px;
+}
+
+.section-head h2{
+ font-size:27px;
+}
+
+.section-head small{
+ color:var(--muted);
+}
+
+/* FILTER */
+
+.filters{
+ display:flex;
+ gap:9px;
+ overflow:auto;
+ margin-bottom:20px;
+}
+
+.filter{
+ background:#0d1324;
+ color:#aeb8d0;
+ border:1px solid var(--line);
+ padding:9px 16px;
+ border-radius:999px;
+ white-space:nowrap;
+}
+
+.filter.active{
+ color:var(--cyan);
+ border-color:#188ba0;
+ background:#112a3a;
+}
+
+/* PRODUCTS */
+
+.products{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:16px;
+}
+
+.product{
+ overflow:hidden;
+ background:linear-gradient(180deg,#11172b,#0b0f1c);
+ border:1px solid var(--line);
+ border-radius:18px;
+ transition:.25s;
+}
+
+.product:hover{
+ transform:translateY(-6px);
+ border-color:#43557d;
+ box-shadow:0 18px 45px #0007;
+}
+
+.product-image{
+ height:160px;
+ display:grid;
+ place-items:center;
+ font-size:52px;
+ background:
+ linear-gradient(135deg,#1b2955,#18132e);
+}
+
+.product-body{
+ padding:16px;
+}
+
+.product-tag{
+ color:#5feeff;
+ font-size:10px;
+ font-weight:bold;
+}
+
+.product h3{
+ margin:9px 0;
+ font-size:15px;
+}
+
+.product-info{
+ display:flex;
+ justify-content:space-between;
+ color:var(--muted);
+ font-size:10px;
+}
+
+.product-bottom{
+ margin-top:17px;
+ display:flex;
+ align-items:center;
+ justify-content:space-between;
+}
+
+.price{
+ font-size:16px;
+ font-weight:bold;
+}
+
+.buy{
+ background:#12243b;
+ color:#70efff;
+ border:1px solid #2a5069;
+ border-radius:10px;
+ padding:8px 12px;
+}
+
+/* FEATURES */
+
+.features{
+ display:grid;
+ grid-template-columns:repeat(4,1fr);
+ gap:15px;
+}
+
+.feature{
+ background:#0d1222;
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:21px;
+}
+
+.feature-icon{
+ font-size:28px;
+ margin-bottom:10px;
+}
+
+.feature h3{
+ font-size:15px;
+ margin-bottom:9px;
+}
+
+.feature p{
+ color:var(--muted);
+ line-height:1.8;
+ font-size:12px;
+}
+
+/* DASHBOARD */
+
+.dashboard{
+ display:grid;
+ grid-template-columns:1fr 1fr;
+ gap:16px;
+}
+
+.panel{
+ background:#0d1222;
+ border:1px solid var(--line);
+ border-radius:18px;
+ padding:20px;
+}
+
+.panel h3{
+ margin-bottom:10px;
+}
+
+.order-row{
+ display:flex;
+ justify-content:space-between;
+ gap:10px;
+ align-items:center;
+ padding:15px 0;
+ border-bottom:1px solid #192139;
+ font-size:12px;
+}
+
+.order-row:last-child{
+ border-bottom:0;
+}
+
+.status{
+ padding:6px 9px;
+ border-radius:99px;
+ font-size:10px;
+ white-space:nowrap;
+}
+
+.done{
+ background:#173526;
+ color:#55ed98;
+}
+
+.progress{
+ background:#342d16;
+ color:#ffd95a;
+}
+
+.waiting{
+ background:#252b3b;
+ color:#b6c0d9;
+}
+
+/* CHAT */
+
+.chat{
+ height:260px;
+ display:flex;
+ flex-direction:column;
+ gap:9px;
+}
+
+.message{
+ background:#171e32;
+ border-radius:12px;
+ padding:10px 12px;
+ font-size:11px;
+ max-width:75%;
+ line-height:1.7;
+}
+
+.message.me{
+ align-self:flex-start;
+ background:#15394d;
+ color:#c5f7ff;
+}
+
+.chat-form{
+ margin-top:auto;
+ display:flex;
+ gap:8px;
+}
+
+.chat-form input{
+ flex:1;
+ min-width:0;
+ background:#070b16;
+ color:white;
+ border:1px solid var(--line);
+ border-radius:10px;
+ padding:10px;
+ outline:none;
+}
+
+/* SUPPORT */
+
+.support-list{
+ display:grid;
+ gap:0;
+}
+
+.ticket{
+ display:flex;
+ justify-content:space-between;
+ align-items:center;
+ padding:16px 0;
+ border-bottom:1px solid #192139;
+ font-size:12px;
+}
+
+.ticket:last-child{
+ border:0;
+}
+
+/* FOOTER */
+
+footer{
+ margin-top:50px;
+ padding:30px 0;
+ border-top:1px solid var(--line);
+ color:var(--muted);
+ font-size:11px;
+}
+
+/* MODAL */
+
+.modal{
+ position:fixed;
+ inset:0;
+ background:#000b;
+ display:none;
+ place-items:center;
+ z-index:500;
+ padding:20px;
+}
+
+.modal.show{
+ display:grid;
+}
+
+.modal-box{
+ width:min(460px,100%);
+ background:#0e1425;
+ border:1px solid #2c3858;
+ border-radius:20px;
+ padding:25px;
+ box-shadow:0 30px 100px #000;
+}
+
+.modal-close{
+ float:left;
+ background:none;
+ border:0;
+ color:#aaa;
+ font-size:22px;
+}
+
+.modal-box h2{
+ margin-bottom:12px;
+}
+
+.modal-box p{
+ color:var(--muted);
+ line-height:2;
+ font-size:13px;
+ margin-bottom:20px;
+}
+
+/* RESPONSIVE */
+
+@media(max-width:950px){
+
+ .hero-grid{
+  grid-template-columns:1fr;
+ }
+
+ .products{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .features{
+  grid-template-columns:repeat(2,1fr);
+ }
+
+ .nav-links{
+  display:none;
+ }
+
+ .hero h1{
+  font-size:45px;
+ }
+
+}
+
+@media(max-width:600px){
+
+ .container{
+  width:calc(100% - 28px);
+ }
+
+ .hero{
+  padding-top:50px;
+ }
+
+ .hero h1{
+  font-size:35px;
+ }
+
+ .products,
+ .features,
+ .dashboard{
+  grid-template-columns:1fr;
+ }
+
+ .nav{
+  height:64px;
+ }
+
+ .hero-buttons{
+  flex-direction:column;
+ }
+
+}
+</style>
+</head>
+
+<body>
+
+<header>
+
+<div class="container nav">
+
+<div class="logo">
+NEX<span>GAME</span>
+</div>
+
+<nav class="nav-links">
+<a href="#home">خانه</a>
+<a href="#market">مارکت</a>
+<a href="#services">خدمات</a>
+<a href="#dashboard">داشبورد</a>
+<a href="#support">پشتیبانی</a>
+</nav>
+
+<div class="spacer"></div>
+
+<button class="login" onclick="openModal('ورود به حساب','در نسخه WordPress این بخش به سیستم ورود و ثبت‌نام واقعی متصل خواهد شد.')">
+ورود / ثبت‌نام
+</button>
+
+</div>
+
+</header>
+
+
+<main id="home">
+
+<section class="hero">
+
+<div class="container hero-grid">
+
+<div>
+
+<div class="badge">
+GAMING MARKETPLACE • FAST • SECURE
+</div>
+
+<h1>
+بازار حرفه‌ای
+<span class="gradient">گیمینگ</span>
+<br>
+برای گیمرها
+</h1>
+
+<p>
+خرید آیتم، جم، اکانت و خدمات گیمینگ با تجربه‌ای سریع،
+مدرن و امن؛ همراه با سیستم سفارش، چت داخلی،
+پشتیبانی و تحویل سریع.
+</p>
+
+<div class="hero-buttons">
+
+<button class="primary"
+onclick="document.getElementById('market').scrollIntoView()">
+مشاهده مارکت
+</button>
+
+<button class="secondary"
+onclick="document.getElementById('dashboard').scrollIntoView()">
+داشبورد من
+</button>
+
+</div>
+
+</div>
+
+
+<div class="hero-card">
+
+<div class="card-top">
+<span>LIVE MARKET</span>
+<span>● ONLINE</span>
+</div>
+
+<div class="hero-image">
+<strong>NEXGAME</strong>
+</div>
+
+<div class="stats">
+
+<div class="stat">
+<b>12.4K</b>
+<small>محصول</small>
+</div>
+
+<div class="stat">
+<b>4.9/5</b>
+<small>رضایت</small>
+</div>
+
+<div class="stat">
+<b>24/7</b>
+<small>پشتیبانی</small>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="market">
+
+<div class="container">
+
+<div class="section-head">
+<h2>محصولات منتخب</h2>
+<small>آخرین پیشنهادهای مارکت</small>
+</div>
+
+
+<div class="filters">
+
+<button class="filter active"
+onclick="filterProducts('all',this)">
+همه
+</button>
+
+<button class="filter"
+onclick="filterProducts('item',this)">
+آیتم
+</button>
+
+<button class="filter"
+onclick="filterProducts('gem',this)">
+جم
+</button>
+
+<button class="filter"
+onclick="filterProducts('account',this)">
+اکانت
+</button>
+
+<button class="filter"
+onclick="filterProducts('service',this)">
+سرویس
+</button>
+
+</div>
+
+
+<div class="products">
+
+
+<article class="product" data-type="item">
+
+<div class="product-image">⚔️</div>
+
+<div class="product-body">
+
+<span class="product-tag">ITEM</span>
+
+<h3>Legendary Weapon Pack</h3>
+
+<div class="product-info">
+<span>DarkStore</span>
+<span>★★★★★</span>
+</div>
+
+<div class="product-bottom">
+
+<span class="price">
+۲۹۹,۰۰۰ تومان
+</span>
+
+<button class="buy"
+onclick="buyProduct('Legendary Weapon Pack')">
+خرید
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="product" data-type="gem">
+
+<div class="product-image">💎</div>
+
+<div class="product-body">
+
+<span class="product-tag">GEMS</span>
+
+<h3>10,000 Crystal Pack</h3>
+
+<div class="product-info">
+<span>تحویل فوری</span>
+<span>★★★★★</span>
+</div>
+
+<div class="product-bottom">
+
+<span class="price">
+۴۹۰,۰۰۰ تومان
+</span>
+
+<button class="buy"
+onclick="buyProduct('10,000 Crystal Pack')">
+خرید
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="product" data-type="account">
+
+<div class="product-image">🎮</div>
+
+<div class="product-body">
+
+<span class="product-tag">ACCOUNT</span>
+
+<h3>Pro Level 80 Account</h3>
+
+<div class="product-info">
+<span>امنیت تضمینی</span>
+<span>★★★★☆</span>
+</div>
+
+<div class="product-bottom">
+
+<span class="price">
+۱,۸۵۰,۰۰۰ تومان
+</span>
+
+<button class="buy"
+onclick="buyProduct('Pro Level 80 Account')">
+خرید
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+<article class="product" data-type="service">
+
+<div class="product-image">🚀</div>
+
+<div class="product-body">
+
+<span class="product-tag">SERVICE</span>
+
+<h3>Rank Boost Service</h3>
+
+<div class="product-info">
+<span>شروع سریع</span>
+<span>★★★★★</span>
+</div>
+
+<div class="product-bottom">
+
+<span class="price">
+۷۹۰,۰۰۰ تومان
+</span>
+
+<button class="buy"
+onclick="buyProduct('Rank Boost Service')">
+خرید
+</button>
+
+</div>
+
+</div>
+
+</article>
+
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="services">
+
+<div class="container">
+
+<div class="features">
+
+<div class="feature">
+
+<div class="feature-icon">⚡</div>
+
+<h3>تحویل سریع</h3>
+
+<p>
+وضعیت سفارش از پرداخت تا تحویل مرحله‌به‌مرحله نمایش داده می‌شود.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🔒</div>
+
+<h3>پرداخت امن</h3>
+
+<p>
+ساختار رابط آماده اتصال به درگاه پرداخت واقعی.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">💬</div>
+
+<h3>چت داخلی</h3>
+
+<p>
+ارتباط مستقیم خریدار و فروشنده داخل سفارش.
+</p>
+
+</div>
+
+
+<div class="feature">
+
+<div class="feature-icon">🎧</div>
+
+<h3>پشتیبانی</h3>
+
+<p>
+سیستم تیکت برای ارسال پیام، تصویر و فایل.
+</p>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="dashboard">
+
+<div class="container">
+
+<div class="section-head">
+<h2>داشبورد کاربر</h2>
+<small>نمونه رابط کاربری</small>
+</div>
+
+
+<div class="dashboard">
+
+
+<div class="panel">
+
+<h3>سفارش‌های اخیر</h3>
+
+
+<div class="order-row">
+
+<span>
+#NG-10482 — Crystal Pack
+</span>
+
+<span class="status done">
+تکمیل شده
+</span>
+
+</div>
+
+
+<div class="order-row">
+
+<span>
+#NG-10477 — Rank Boost
+</span>
+
+<span class="status progress">
+در حال انجام
+</span>
+
+</div>
+
+
+<div class="order-row">
+
+<span>
+#NG-10461 — Account
+</span>
+
+<span class="status waiting">
+در انتظار پرداخت
+</span>
+
+</div>
+
+</div>
+
+
+<div class="panel">
+
+<h3>
+چت سفارش #NG-10477
+</h3>
+
+<div class="chat" id="chat">
+
+<div class="message">
+سلام، سفارش شما در حال انجام است.
+</div>
+
+<div class="message me">
+ممنون، حدوداً چه زمانی تکمیل می‌شود؟
+</div>
+
+<div class="message">
+به‌زودی تحویل می‌دهم. فایل نتیجه هم داخل سفارش ارسال می‌شود.
+</div>
+
+
+<div class="chat-form">
+
+<input
+id="chatInput"
+placeholder="پیام خود را بنویسید..."
+onkeydown="if(event.key==='Enter') sendMessage()"
+>
+
+<button class="buy"
+onclick="sendMessage()">
+ارسال
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+
+<section id="support">
+
+<div class="container">
+
+<div class="panel">
+
+<div class="section-head">
+
+<h2>پشتیبانی</h2>
+
+<small>
+سیستم تیکت
+</small>
+
+</div>
+
+
+<div class="support-list">
+
+
+<div class="ticket">
+
+<span>
+تیکت #TK-2081 — مشکل تحویل
+</span>
+
+<span class="status progress">
+در حال بررسی
+</span>
+
+</div>
+
+
+<div class="ticket">
+
+<span>
+تیکت #TK-2074 — مشکل پرداخت
+</span>
+
+<span class="status done">
+پاسخ داده شد
+</span>
+
+</div>
+
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+
+</main>
+
+
+<footer>
+
+<div class="container">
+NEXGAME — Gaming Marketplace
+</div>
+
+</footer>
+
+
+<div class="modal" id="modal">
+
+<div class="modal-box">
+
+<button class="modal-close" onclick="closeModal()">
+×
+</button>
+
+<h2 id="modalTitle"></h2>
+
+<p id="modalText"></p>
+
+<button class="primary" onclick="closeModal()">
+متوجه شدم
+</button>
+
+</div>
+
+</div>
+
+
+<script>
+
+function filterProducts(type,button){
+
+document
+.querySelectorAll('.filter')
+.forEach(x=>x.classList.remove('active'));
+
+button.classList.add('active');
+
+document
+.querySelectorAll('.product')
+.forEach(product=>{
+
+if(type==='all' || product.dataset.type===type){
+
+product.style.display='block';
+
+}else{
+
+product.style.display='none';
+
+}
+
+});
+
+}
+
+
+function openModal(title,text){
+
+document.getElementById('modalTitle').textContent=title;
+
+document.getElementById('modalText').textContent=text;
+
+document.getElementById('modal').classList.add('show');
+
+}
+
+
+function closeModal(){
+
+document.getElementById('modal').classList.remove('show');
+
+}
+
+
+function buyProduct(product){
+
+openModal(
+'ثبت سفارش',
+'محصول «'+product+'» انتخاب شد. در نسخه WordPress این بخش به فرم سفارش و درگاه پرداخت واقعی متصل می‌شود.'
+);
+
+}
+
+
+function sendMessage(){
+
+const input=document.getElementById('chatInput');
+
+const text=input.value.trim();
+
+if(!text)return;
+
+const message=document.createElement('div');
+
+message.className='message me';
+
+message.textContent=text;
+
+const chat=document.getElementById('chat');
+
+chat.insertBefore(
+message,
+document.querySelector('.chat-form')
+);
+
+input.value='';
+
+}
+
+window.onclick=function(event){
+
+if(event.target.id==='modal'){
+
+closeModal();
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
